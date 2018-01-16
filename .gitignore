@@ -1,3 +1,6 @@
 nbproject/
 node_modules/
 source/_stylesheet.js
+imgur_secrets.txt
+plugins.zip
+cfg.json

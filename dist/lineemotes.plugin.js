@@ -76,25 +76,28 @@ lineemotes.prototype.getLocalizationStrings = function () {
   var localization_strings = {
     'bda-qem-emojis': 'Emojis',
     'bda-qem-favourite': 'Favourite',
-    'bda-qem-line': 'LINE',
-    'addform-title': 'Title',
-    'addform-length': 'Sticker count',
-    'addform-id': 'First sticker ID',
+    'bda-qem-line': 'Imgur',
+	'addform-title': 'Title',
+    'addform-title-placeholder': 'Default',
+    'addform-pack': 'Imgur post',
+    'addform-id': 'not used',
     'addform-add': 'Add',
     'delete-confirm': 'Are you sure you want to delete this pack?',
     'yes': 'Yes',
     'no': 'No'
   }
-  if (locale === 'ja') {
-    localization_strings['bda-qem-emojis'] = '絵文字',
-    localization_strings['bda-qem-favourite'] = 'お気に入り'
-    localization_strings['addform-title'] = 'タイトル',
-    localization_strings['addform-length'] = 'スタンプの数',
-    localization_strings['addform-id'] = '最初のスタンプID',
-    localization_strings['addform-add'] = '追加',
-    localization_strings['delete-confirm'] = 'このパックを削除しますか？',
-    localization_strings['yes'] = 'はい',
-    localization_strings['no'] = 'いいえ'
+  if (locale === 'ru') {
+    localization_strings['bda-qem-emojis'] = 'Стикеры',
+    localization_strings['bda-qem-favourite'] = 'Избранное',
+	localization_strings['bda-qem-line'] = 'Imgur',
+	localization_strings['addform-title'] = 'Заголовок',
+    localization_strings['addform-title-placeholder'] = 'По умолчанию',
+    localization_strings['addform-pack'] = 'Пост Imgur',
+    localization_strings['addform-id'] = 'не используется',
+    localization_strings['addform-add'] = '<b>+</b>',
+    localization_strings['delete-confirm'] = 'Вы действительно хотите удалить этот пак?',
+    localization_strings['yes'] = 'Да',
+    localization_strings['no'] = 'Нет'
   }
 
   return localization_strings;
@@ -129,18 +132,18 @@ lineemotes.categories.buildContainer = function() {
         }
     }
     var localization_strings = lineemotes.prototype.getLocalizationStrings();
-    var numbersOnly = "return event.charCode >= 48 && event.charCode <= 57";
+    //var numbersOnly = "return event.charCode >= 48 && event.charCode <= 57";
     container += `
 <div class="add-form" style="opacity: 0; pointer-events: none;">
     <div class="labels">
         <label for="line-add-title">${localization_strings['addform-title']}</label>
-        <label for="line-add-length">${localization_strings['addform-length']}</label>
-        <label for="line-add-id">${localization_strings['addform-id']}</label>
+        <label for="line-add-pack">${localization_strings['addform-pack']}</label>
+        <!--<label for="line-add-id">${localization_strings['addform-id']}</label>-->
     </div>
     <div class="inputs">
-        <input id="line-add-title" placeholder="${localization_strings['addform-title']}">
-        <input id="line-add-length" onkeypress="${numbersOnly}" placeholder="${localization_strings['addform-length']}" value="40">
-        <input id="line-add-id" onkeypress="${numbersOnly}" placeholder="${localization_strings['addform-id']}">
+        <input id="line-add-title" placeholder="${localization_strings['addform-title-placeholder']}">
+        <input id="line-add-pack" placeholder="URL">
+        <!--<input id="line-add-id" placeholder="${localization_strings['addform-id']}">-->
     </div>
 
     <button type="button" class="line-add-button ui-button filled brand small">
@@ -210,7 +213,7 @@ lineemotes.categories.init = function () {
     }
 
     $(`#line-add-title`).off();
-    $(`#line-add-length`).off();
+    $(`#line-add-pack`).off();
     $(`#line-add-id`).off();
 
     $(`#line-add-title`).keyup((event) => {
@@ -218,7 +221,7 @@ lineemotes.categories.init = function () {
         else state['title'] = false;
         validate();
     });
-    $(`#line-add-length`).keyup((event) => {
+    $(`#line-add-pack`).keyup((event) => {
         if (Number($(event.target).val())) state['length'] = true;
         else state['length'] = false;
         validate();
@@ -235,13 +238,68 @@ lineemotes.categories.init = function () {
     });
     $('#bda-qem-line-container .line-add-button').on('click', (event) => {
         if (validate()) {
-            var title = $('#line-add-title').val().trim();
-            var length = $('#line-add-length').val().trim();
-            var id = $('#line-add-id').val().trim();
-            lineemotes.appendPack(title, id, length);
+            //var title = $('#line-add-title').val().trim();
+            //var img_link = $('#line-add-pack').val().trim();
+			/* var opt = {
+				method: 'GET',
+				headers: new Headers().append('Authorization','Client-ID 249cabd734502ac')
+			}; */
+			//if (img_link.indexOf('\/a\/')) {
+				//lineemotes.log(Reqest album);
+				/* fetch('https://api.imgur.com/3/album/'+img_link.slice(img_link.lastIndexOf("\/")+1), opt)
+					.then(function (res) {
+						res.json()
+							.then(function (data) {
+								if (data.success == true) {
+									var images = []
+									if (!title) title = data.data.title;
+									for (var i, i < data.data.images.length, i++) {
+										let link = data.data.images[i].link;
+										images.push(link.slice(link.lastIndexOf('\/')+1));
+									}
+									lineemotes.appendPack(data.data.id, title, images);										//■■■■■■ ■■■■■■■ ■■■■■■■ 	БЛЯДЬ НЕ ДАЕТ ЕМУ ГРУЗИТЬСЯ
+								}                                                                                           //     ■    ■    ■     ■	КАК?
+							})                                                                                              //■■■■■■    ■    ■     ■	НЕЕБУ
+					}); */                                                                                                  //     ■    ■    ■     ■
+			//} else if (img_link.indexOf('\/gallery\/')) {                                                                 //■■■■■■    ■    ■■■■■■■
+				//lineemotes.log(Reqest gallery);
+				/* fetch('https://api.imgur.com/3/gallery/'+img_link.slice(img_link.lastIndexOf("\/")+1), opt)
+					.then(function (res) {
+						res.json()
+							.then(function (data) {
+								if (data.success == true) {
+									var images = []
+									if (!title) title = data.data.title;
+									for (var i, i < data.data.images.length, i++) {
+										let link = data.data.images[i].link;
+										images.push(link.slice(link.lastIndexOf('\/')+1));
+									}
+									lineemotes.appendPack(data.data.id, title, images);
+								}
+							})
+					}); */								
+			//} else {
+				//lineemotes.log(Reqest image);
+				/* fetch('https://api.imgur.com/3/image/'+img_link.slice(img_link.lastIndexOf("\/")+1), opt)
+					.then(function (res) {
+						res.json()
+							.then(function (data) {
+								if (data.success == true) {
+									var images = []
+									if (!title) title = data.data.title;
+									let link = data.data.link;
+									images.push(link.slice(link.lastIndexOf('\/')+1));
+									lineemotes.appendPack(data.data.id, title, images);
+								}
+							})
+					}); */
+			//}
+			
+            //var id = $('#line-add-id').val().trim();
+            
             $('#line-add-title').val('');
-            $('#line-add-length').val(40);
-            $('#line-add-id').val('');
+            $('#line-add-pack').val('');
+            //$('#line-add-id').val('');
         }
     });
 };
@@ -694,7 +752,7 @@ lineemotes.menu.resize = function() {
     // $('#bda-qem-line-container .categories-container').css('width', width - 15);
     // $('#bda-qem-line-container .add-form').css('width', width - 45);
     // $('#line-add-title').css('width', width - 220);
-    // $('#line-add-length').css('width', width - 220);
+    // $('#line-add-pack').css('width', width - 220);
     // $('#line-add-id').css('width', width - 219);
 };
 
@@ -853,25 +911,24 @@ lineemotes.prototype.observer.getNodes = function (node) {
     }
     return nodes;
 };
-
+//скрытие ссылки
 lineemotes.prototype.observer.inject = function (node) {
-    /* if ((node.textContent.match(/sdl-stickershop.line.naver.jp/g)||[]).length < 1) return
-    $(node).parent()[0].style.display = "none"; */
+    if ((node.textContent.match(/i.imgur.com/g)||[]).length < 1) return
+    $(node).parent()[0].style.display = "none";
 };
 
 lineemotes.pack = function () {}
 
-lineemotes.pack.getPack = function (title, stickerid, length) {
+lineemotes.pack.getPack = function (id, title, images) {
     var pack = {
+		id: id,
         title: title,
-        starting_id: stickerid,
-        length: Number(length)
+		images: []
     };
-
     return pack;
 };
 
-lineemotes.pack.appendPack = function (title, stickerid, length) {
+lineemotes.pack.appendPack = function (id, title, images) {
     var log = lineemotes.log;
     var storage = lineemotes.storage;
     var pack = lineemotes.pack;
@@ -879,7 +936,7 @@ lineemotes.pack.appendPack = function (title, stickerid, length) {
     // parsing arguments
     /* if (typeof title     === 'undefined') { throw 'ParsingError: Title is not defined'; }
     if (typeof stickerid === 'undefined') { throw 'ParsingError: Sticker ID is not a defined'; } */
-    if (typeof length    === 'undefined') { length = 1; log(`Length is not explicitly defined, defaulting to ${length}`); }
+    //if (typeof length    === 'undefined') { length = 1; log(`Length is not explicitly defined, defaulting to ${length}`); }
 
     /* if (typeof title !== 'string') { throw 'ParsingError: Title is not a string'; }
     if (Number.isInteger(stickerid) === false) {
@@ -910,7 +967,7 @@ lineemotes.pack.appendPack = function (title, stickerid, length) {
         }
     } */
 
-    var stickerpack = pack.getPack(title, stickerid, length);
+    var stickerpack = pack.getPack(stickerid, title);
     if (lineemotes.storage.getPack(stickerid) === null) {
         storage.pushPack(stickerpack);
         lineemotes.menu.rebuild();
@@ -922,8 +979,8 @@ lineemotes.pack.appendPack = function (title, stickerid, length) {
 };
 
 // alias
-lineemotes.appendPack = function (title, stickerid, length) {
-    this.pack.appendPack(title, stickerid, length);
+lineemotes.appendPack = function (id, title, images) {
+    this.pack.appendPack(id, title, images);
 };
 
 lineemotes.pack.wrapPack = function (stickerid) {
@@ -1095,7 +1152,7 @@ lineemotes.storage.wipe = function () {
 
 lineemotes.storage.pushPack = function (pack) {
     var log = lineemotes.log;
-    if (this.getPack(pack['starting_id']) === null) {
+    if (this.getPack(pack['id']) === null) {
         var storage = this.get();
         storage.push(pack);
         this.set(storage);
@@ -1109,7 +1166,7 @@ lineemotes.storage.pushPack = function (pack) {
 lineemotes.storage.getPack = function(id) {
     var storage = this.get();
     for (var i = 0; i < storage.length; i++) {
-	if (storage[i]['starting_id'] == id) {
+	if (storage[i]['id'] == id) {
             return storage[i];
         }
     }
@@ -1276,9 +1333,9 @@ var stylesheet = `#bda-qem-line-container .icon-plus {
     #bda-qem-line-container .add-form .labels input, #bda-qem-line-container .add-form .inputs input {
       border-bottom: solid 1px; }
     #bda-qem-line-container .add-form .labels #line-add-title,
-    #bda-qem-line-container .add-form .labels #line-add-length,
+    #bda-qem-line-container .add-form .labels #line-add-pack,
     #bda-qem-line-container .add-form .labels #line-add-id, #bda-qem-line-container .add-form .inputs #line-add-title,
-    #bda-qem-line-container .add-form .inputs #line-add-length,
+    #bda-qem-line-container .add-form .inputs #line-add-pack,
     #bda-qem-line-container .add-form .inputs #line-add-id {
       width: 100%;
       height: 16px; }
