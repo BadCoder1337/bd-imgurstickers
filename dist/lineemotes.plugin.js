@@ -125,7 +125,7 @@ lineemotes.categories.buildContainer = function() {
     var storage = lineemotes.storage.get();
     if (storage) {
         for (var pack = 0; pack < storage.length; ++pack) {
-            categories += `<div class="item" data-id="${storage[pack]['starting_id']}" onclick="$('#bda-qem-line-container .line-pack')[${pack}].scrollIntoView()" style='background-image: url("https://sdl-stickershop.line.naver.jp/stickershop/v1/sticker/${storage[pack]['starting_id']}/android/sticker.png;compress=true")'></div>`;
+            categories += `<div class="item" data-id="${storage[pack]['starting_id']}" onclick="$('#bda-qem-line-container .line-pack')[${pack}].scrollIntoView()" style='background-image: url("https://i.imgur.com/${(storage[pack]['starting_id'])}")'></div>`;
         }
     }
     var localization_strings = lineemotes.prototype.getLocalizationStrings();
@@ -194,7 +194,7 @@ lineemotes.categories.init = function () {
     };
 
     function validate() {
-        function clearAndSet(target, state) {
+        /* function clearAndSet(target, state) {
             $(target).removeClass('valid');
             $(target).removeClass('invalid');
             $(target).addClass(state);
@@ -205,7 +205,8 @@ lineemotes.categories.init = function () {
         } else {
             clearAndSet($('#bda-qem-line-container .line-add-button'), 'invalid');
             return false;
-        }
+        } */
+		return true;
     }
 
     $(`#line-add-title`).off();
@@ -714,7 +715,7 @@ lineemotes.menu.appendPack = function(id) {
     var pack = lineemotes.storage.getPack(id);
     var id = pack['starting_id'];
     var position = $('#bda-qem-line-container .categories-wrapper .item').length - 1;
-    var category = `<div class="item" data-id="${id}" onclick="$('#bda-qem-line-container .line-pack')[${position}].scrollIntoView()" style='background-image: url("https://sdl-stickershop.line.naver.jp/stickershop/v1/sticker/${id}/android/sticker.png;compress=true")'></div>`;
+    var category = `<div class="item" data-id="${id}" onclick="$('#bda-qem-line-container .line-pack')[${position}].scrollIntoView()" style='background-image: url("https://i.imgur.com/${id}")'></div>`;
     $('#bda-qem-line-container .categories-wrapper').append(category);
 
     // enable preview on the added pack
@@ -854,8 +855,8 @@ lineemotes.prototype.observer.getNodes = function (node) {
 };
 
 lineemotes.prototype.observer.inject = function (node) {
-    if ((node.textContent.match(/sdl-stickershop.line.naver.jp/g)||[]).length < 1) return
-    $(node).parent()[0].style.display = "none";
+    /* if ((node.textContent.match(/sdl-stickershop.line.naver.jp/g)||[]).length < 1) return
+    $(node).parent()[0].style.display = "none"; */
 };
 
 lineemotes.pack = function () {}
@@ -863,7 +864,7 @@ lineemotes.pack = function () {}
 lineemotes.pack.getPack = function (title, stickerid, length) {
     var pack = {
         title: title,
-        starting_id: Number(stickerid),
+        starting_id: stickerid,
         length: Number(length)
     };
 
@@ -876,11 +877,11 @@ lineemotes.pack.appendPack = function (title, stickerid, length) {
     var pack = lineemotes.pack;
 
     // parsing arguments
-    if (typeof title     === 'undefined') { throw 'ParsingError: Title is not defined'; }
-    if (typeof stickerid === 'undefined') { throw 'ParsingError: Sticker ID is not a defined'; }
-    if (typeof length    === 'undefined') { length = 40; log(`Length is not explicitly defined, defaulting to ${length}`); }
+    /* if (typeof title     === 'undefined') { throw 'ParsingError: Title is not defined'; }
+    if (typeof stickerid === 'undefined') { throw 'ParsingError: Sticker ID is not a defined'; } */
+    if (typeof length    === 'undefined') { length = 1; log(`Length is not explicitly defined, defaulting to ${length}`); }
 
-    if (typeof title !== 'string') { throw 'ParsingError: Title is not a string'; }
+    /* if (typeof title !== 'string') { throw 'ParsingError: Title is not a string'; }
     if (Number.isInteger(stickerid) === false) {
         if (typeof stickerid === 'string') {
             stickerid = parseInt(stickerid, 10);
@@ -907,7 +908,7 @@ lineemotes.pack.appendPack = function (title, stickerid, length) {
         } else {
             throw 'ParsingError: Length is not a number nor string';
         }
-    }
+    } */
 
     var stickerpack = pack.getPack(title, stickerid, length);
     if (lineemotes.storage.getPack(stickerid) === null) {
@@ -927,11 +928,11 @@ lineemotes.appendPack = function (title, stickerid, length) {
 
 lineemotes.pack.wrapPack = function (stickerid) {
     var pack = lineemotes.storage.getPack(stickerid);
-    if (pack === null) { return ''; }
+    //if (pack === null) { return ''; }
     var stickers = '';
-    for (var i = 0; i < pack['length']; ++i) {
-        stickers += `<div class="emote-container"><img class="emote-icon" src="https://sdl-stickershop.line.naver.jp/stickershop/v1/sticker/${Number(pack['starting_id']) + i}/android/sticker.png;compress=true"></div>`;
-    }
+    //for (var i = 0; i < pack['length']; ++i) {
+        stickers += `<div class="emote-container"><img class="emote-icon" src="https://i.imgur.com/${(pack['starting_id'])}"></div>`;
+    //}
     var container = `
 <div class="line-pack" data-id="${pack['starting_id']}">
     <div class="line-editbar">
