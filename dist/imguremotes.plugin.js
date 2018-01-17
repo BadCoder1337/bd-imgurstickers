@@ -138,12 +138,10 @@ imguremotes.categories.buildContainer = function() {
     <div class="labels">
         <label for="imgur-add-title">${localization_strings['addform-title']}</label>
         <label for="imgur-add-pack">${localization_strings['addform-pack']}</label>
-        <!--<label for="imgur-add-id">${localization_strings['addform-id']}</label>-->
     </div>
     <div class="inputs">
         <input id="imgur-add-title" placeholder="${localization_strings['addform-title-placeholder']}">
         <input id="imgur-add-pack" placeholder="URL">
-        <!--<input id="imgur-add-id" placeholder="${localization_strings['addform-id']}">-->
     </div>
 
     <button type="button" class="imgur-add-button ui-button filled brand small">
@@ -1014,7 +1012,7 @@ imguremotes.pack.wrapPack = function (stickerid) {
             <span class="icon-edit"></span>
         </span>
 
-        <span class="item" style="display: none; text-align: center; width: 30px; vertical-align: middle; imgur-height: 23.5px; color: #d1d1d1;">
+        <span class="item" style="display: none; text-align: center; width: 30px; vertical-align: middle; line-height: 23.5px; color: #d1d1d1;">
             <span class="icon-edit-len">LEN</span>
         </span>
     </div>
@@ -1115,7 +1113,7 @@ imguremotes.preview.buildContainer = function() {
     var container = '';
     container += `
 <div class="preview-container">
-    <div class="preview-wrapper" style="visibility: hidden; opacity: 0; background-size: 50%;"></div>
+    <div class="preview-wrapper" style="visibility: hidden; opacity: 0; background-size: 100%;"></div>
 </div>`;
     return container;
 }
@@ -1341,7 +1339,7 @@ var stylesheet = `#bda-qem-imgur-container .icon-plus {
     flex-direction: column;
     margin-right: 10px;
     font-size: 12px;
-    imgur-height: 17px; }
+    line-height: 17px; }
     #bda-qem-imgur-container .add-form .labels input::-webkit-input-placeholder, #bda-qem-imgur-container .add-form .inputs input::-webkit-input-placeholder {
       color: rgba(152, 170, 182, 0.5); }
     #bda-qem-imgur-container .add-form .labels input, #bda-qem-imgur-container .add-form .inputs input {
