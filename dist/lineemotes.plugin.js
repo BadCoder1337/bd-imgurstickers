@@ -128,7 +128,7 @@ lineemotes.categories.buildContainer = function() {
     var storage = lineemotes.storage.get();
     if (storage) {
         for (var pack = 0; pack < storage.length; ++pack) {
-            categories += `<div class="item" data-id="${storage[pack]['starting_id']}" onclick="$('#bda-qem-line-container .line-pack')[${pack}].scrollIntoView()" style='background-image: url("https://i.imgur.com/${(storage[pack]['starting_id'])}")'></div>`;
+            categories += `<div class="item" data-id="${storage[pack]['starting_id']}" onclick="$('#bda-qem-line-container .line-pack')[${pack}].scrollIntoView()" style='background-image: url("https://i.imgur.com/${(storage[pack]['images'][0])}")'></div>`;
         }
     }
     var localization_strings = lineemotes.prototype.getLocalizationStrings();
@@ -238,62 +238,68 @@ lineemotes.categories.init = function () {
     });
     $('#bda-qem-line-container .line-add-button').on('click', (event) => {
         if (validate()) {
-            //var title = $('#line-add-title').val().trim();
-            //var img_link = $('#line-add-pack').val().trim();
-			/* var opt = {
+            var title = $('#line-add-title').val().trim();
+            var img_link = $('#line-add-pack').val().trim();
+			var opt = {
 				method: 'GET',
-				headers: new Headers().append('Authorization','Client-ID 249cabd734502ac')
-			}; */
-			//if (img_link.indexOf('\/a\/')) {
-				//lineemotes.log(Reqest album);
-				/* fetch('https://api.imgur.com/3/album/'+img_link.slice(img_link.lastIndexOf("\/")+1), opt)
+				headers: new Headers({'Authorization': 'Client-ID 249cabd734502ac'})
+			};
+			if (img_link.indexOf('/a/')) {
+				lineemotes.log('Reqest album');
+				fetch('https://api.imgur.com/3/album/'+img_link.slice(img_link.lastIndexOf("\/")+1), opt)
 					.then(function (res) {
 						res.json()
 							.then(function (data) {
 								if (data.success == true) {
 									var images = []
-									if (!title) title = data.data.title;
-									for (var i, i < data.data.images.length, i++) {
+									if (!title) {title = data.data.title};
+									//lineemotes.log('Length: '+data.data.images.length);
+									for (var i = 0; i < data.data.images.length; i++) {
 										let link = data.data.images[i].link;
 										images.push(link.slice(link.lastIndexOf('\/')+1));
-									}
-									lineemotes.appendPack(data.data.id, title, images);										//■■■■■■ ■■■■■■■ ■■■■■■■ 	БЛЯДЬ НЕ ДАЕТ ЕМУ ГРУЗИТЬСЯ
-								}                                                                                           //     ■    ■    ■     ■	КАК?
-							})                                                                                              //■■■■■■    ■    ■     ■	НЕЕБУ
-					}); */                                                                                                  //     ■    ■    ■     ■
-			//} else if (img_link.indexOf('\/gallery\/')) {                                                                 //■■■■■■    ■    ■■■■■■■
-				//lineemotes.log(Reqest gallery);
-				/* fetch('https://api.imgur.com/3/gallery/'+img_link.slice(img_link.lastIndexOf("\/")+1), opt)
-					.then(function (res) {
-						res.json()
-							.then(function (data) {
-								if (data.success == true) {
-									var images = []
-									if (!title) title = data.data.title;
-									for (var i, i < data.data.images.length, i++) {
-										let link = data.data.images[i].link;
-										images.push(link.slice(link.lastIndexOf('\/')+1));
+										//lineemotes.log("A Img: "+link.slice(link.lastIndexOf('\/')+1));
 									}
 									lineemotes.appendPack(data.data.id, title, images);
-								}
-							})
-					}); */								
-			//} else {
-				//lineemotes.log(Reqest image);
-				/* fetch('https://api.imgur.com/3/image/'+img_link.slice(img_link.lastIndexOf("\/")+1), opt)
+									//lineemotes.log("A Images: "+images.join(', '));
+								}                                                                                       
+							})                                                                                          
+					});                                                                                                 
+			} else if (img_link.indexOf('/gallery/')) {                                                               
+				lineemotes.log('Reqest gallery');
+				fetch('https://api.imgur.com/3/gallery/'+img_link.slice(img_link.lastIndexOf("\/")+1), opt)
 					.then(function (res) {
 						res.json()
 							.then(function (data) {
 								if (data.success == true) {
 									var images = []
-									if (!title) title = data.data.title;
+									if (!title) {title = data.data.title};
+									for (var i = 0; i < data.data.images.length; i++) {
+										let link = data.data.images[i].link;
+										images.push(link.slice(link.lastIndexOf('\/')+1));
+										lineemotes.log("G Img: "+link.slice(link.lastIndexOf('\/')+1));
+									}
+									lineemotes.appendPack(data.data.id, title, images);
+									//lineemotes.log("G Images: "+images.join(', '));
+								}
+							})
+					});								
+			} else {
+				lineemotes.log('Reqest image');
+				fetch('https://api.imgur.com/3/image/'+img_link.slice(img_link.lastIndexOf("\/")+1), opt)
+					.then(function (res) {
+						res.json()
+							.then(function (data) {
+								if (data.success == true) {
+									var images = []
+									if (!title) {title = data.data.title};
 									let link = data.data.link;
 									images.push(link.slice(link.lastIndexOf('\/')+1));
 									lineemotes.appendPack(data.data.id, title, images);
+									//lineemotes.log("N Images: "+images.join(', '));
 								}
 							})
-					}); */
-			//}
+					});
+			}
 			
             //var id = $('#line-add-id').val().trim();
             
@@ -555,11 +561,12 @@ lineemotes.menu.init = function () {
 };
 
 lineemotes.menu.buildContainer = function () {
-    var stickers = '';
+    lineemotes.log('Start building');
+	var stickers = '';
     var storage = lineemotes.storage.get();
 
     for (var pack = 0; pack < storage.length; ++pack) {
-        stickers += lineemotes.pack.wrapPack(storage[pack]['starting_id']);
+        stickers += lineemotes.pack.wrapPack(storage[pack]['id']);
     }
 
     // var container = `${lineemotes.getStylesheet()}
@@ -771,7 +778,7 @@ lineemotes.menu.appendPack = function(id) {
 
     // append the pack to navigation bar below
     var pack = lineemotes.storage.getPack(id);
-    var id = pack['starting_id'];
+    //var id = pack['id'];
     var position = $('#bda-qem-line-container .categories-wrapper .item').length - 1;
     var category = `<div class="item" data-id="${id}" onclick="$('#bda-qem-line-container .line-pack')[${position}].scrollIntoView()" style='background-image: url("https://i.imgur.com/${id}")'></div>`;
     $('#bda-qem-line-container .categories-wrapper').append(category);
@@ -801,7 +808,7 @@ lineemotes.menu.appendPack = function(id) {
         var id = $(event.target.parentNode.parentNode.parentNode).attr('data-id');
         $('#bda-qem-line-container .confirm .yes').attr(
             'onclick',
-            `lineemotes.storage.deletePack(${id}); lineemotes.menu.removePack(${id}); lineemotes.confirm.hide();`);
+            `lineemotes.storage.deletePack(\'${id}\'); alert(); lineemotes.menu.removePack(\'${id}\'); lineemotes.confirm.hide();`);
         lineemotes.confirm.show();
     });
 
@@ -920,15 +927,17 @@ lineemotes.prototype.observer.inject = function (node) {
 lineemotes.pack = function () {}
 
 lineemotes.pack.getPack = function (id, title, images) {
+	lineemotes.log('Get Pack');
     var pack = {
 		id: id,
         title: title,
-		images: []
+		images: images
     };
     return pack;
 };
 
 lineemotes.pack.appendPack = function (id, title, images) {
+	lineemotes.log("Appending images: "+images.join(', '));
     var log = lineemotes.log;
     var storage = lineemotes.storage;
     var pack = lineemotes.pack;
@@ -967,11 +976,11 @@ lineemotes.pack.appendPack = function (id, title, images) {
         }
     } */
 
-    var stickerpack = pack.getPack(stickerid, title);
-    if (lineemotes.storage.getPack(stickerid) === null) {
+    var stickerpack = pack.getPack(id, title, images);
+    if (lineemotes.storage.getPack(id) === null) {
         storage.pushPack(stickerpack);
         lineemotes.menu.rebuild();
-        lineemotes.menu.appendPack(stickerid);
+        lineemotes.menu.appendPack(id);
     } else {
         log('Pack already exists in storage');
     }
@@ -984,14 +993,19 @@ lineemotes.appendPack = function (id, title, images) {
 };
 
 lineemotes.pack.wrapPack = function (stickerid) {
+	lineemotes.log('Wrapping');
     var pack = lineemotes.storage.getPack(stickerid);
-    //if (pack === null) { return ''; }
+	//lineemotes.log(pack);
+    if (pack === null) { return ''; }
     var stickers = '';
-    //for (var i = 0; i < pack['length']; ++i) {
-        stickers += `<div class="emote-container"><img class="emote-icon" src="https://i.imgur.com/${(pack['starting_id'])}"></div>`;
-    //}
+    for (var i = 0; i < pack.images.length; ++i) {
+        stickers += `<div class="emote-container"><img class="emote-icon" src="https://i.imgur.com/`;
+		stickers += pack.images[i];
+		stickers += `"></div>`;
+		//lineemotes.log(i);
+	}
     var container = `
-<div class="line-pack" data-id="${pack['starting_id']}">
+<div class="line-pack" data-id="${pack.id}">
     <div class="line-editbar">
         <span class="item">
             <span class="icon-plus-cross icon-plus"></span>
@@ -1090,7 +1104,7 @@ lineemotes.confirm.init = function () {
         var id = $(event.target.parentNode.parentNode.parentNode).attr('data-id');
         $('#bda-qem-line-container .confirm .yes').attr(
             'onclick',
-            `lineemotes.storage.deletePack(${id}); lineemotes.menu.removePack(${id}); lineemotes.confirm.hide();`);
+            `lineemotes.storage.deletePack(\'${id}\'); lineemotes.menu.removePack(\'${id}\'); lineemotes.confirm.hide();`);
         lineemotes.confirm.show();
     });
 };
@@ -1101,7 +1115,7 @@ lineemotes.preview.buildContainer = function() {
     var container = '';
     container += `
 <div class="preview-container">
-    <div class="preview-wrapper" style="visibility: hidden; opacity: 0; background-size: inherit;"></div>
+    <div class="preview-wrapper" style="visibility: hidden; opacity: 0; background-size: 50%;"></div>
 </div>`;
     return container;
 }
@@ -1219,7 +1233,7 @@ lineemotes.storage.deletePack = function(id) {
     var wasFound = false;
     
     for (var i = 0; i < storage.length; i++) {
-	if (storage[i]['starting_id'] == id) {
+	if (storage[i]['id'] == id) {
             wasFound = true;
             pack = `${id} - ${storage[i]['title']}`;
             storage.splice(i, 1);
@@ -1258,7 +1272,7 @@ lineemotes.storage.renamePack = function(id, newtitle) {
     } else {
         var storage = lineemotes.storage.get();
         for (var pack = 0; pack < storage.length; ++pack) {
-            if (storage[pack]['starting_id'] == id) {
+            if (storage[pack]['id'] == id) {
                 storage[pack]['title'] = newtitle;
                 this.set(storage);
                 lineemotes.menu.rebuild();
