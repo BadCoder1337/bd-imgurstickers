@@ -87,7 +87,7 @@ imguremotes.prototype.getLocalizationStrings = function () {
     'no': 'No'
   }
   if (locale === 'ru') {
-    localization_strings['bda-qem-emojis'] = 'Стикеры',
+    localization_strings['bda-qem-emojis'] = 'Эмодзи',
     localization_strings['bda-qem-favourite'] = 'Избранное',
 	localization_strings['bda-qem-imgur'] = 'Imgur',
 	localization_strings['addform-title'] = 'Заголовок',
