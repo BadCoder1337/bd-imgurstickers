@@ -1,29 +1,47 @@
+_Feel free to [join the Discord server](https://discordapp.com/invite/wCX6K8q) and ping me if you have any questions or [open an Issue on GitHub](https://github.com/awaken1ng/bd-linestickers/issues)_
 
-_Лучший [сервер](https://discord.gg/r6rus) за последнюю тысячу лет._  
-Пишите в Discord DM(FaZebook#3120)  или [репортите баг на GitHub](https://github.com/badcoder1337/bd-imgurstickers/issues)
+[日本語の解説](README_ja.md)
 
-[English Version](README_en.md)
+# BetterDiscord LINE Stickers Plugin
 
-# BetterDiscord Imgur Stickers Plugin
+Extends BetterDiscord emote menu to add a tab with LINE stickers to it
+[![](https://camo.githubusercontent.com/6b145ba99071dd660d1ac866cc507e74de704874/68747470733a2f2f63646e2e646973636f72646170702e636f6d2f6174746163686d656e74732f3233313434323233333138343734373534302f3332333539363635363935343137393538352f756e6b6e6f776e2e706e67)](https://github.com/awaken1ng/bd-linestickers#installation)
+[![](https://camo.githubusercontent.com/84a146ee8b202df573c4c4303759ea19a8b150ee/68747470733a2f2f63646e2e646973636f72646170702e636f6d2f6174746163686d656e74732f3233313434323233333138343734373534302f3332333539363637393032303431323932382f756e6b6e6f776e2e706e67)](https://github.com/awaken1ng/bd-linestickers#installation)
 
-Расширяет меню эмодзи BetterDiscord, добавляя возможность встраивания стикеров из Imgur (одиночные изображения, галереи и альбомы).  
-[![](https://i.imgur.com/l7V3UVe.png)](https://github.com/badcoder1337/bd-imgurstickers#installation)
-[![](https://i.imgur.com/Q9zcxSi.png)](https://github.com/badcoder1337/bd-imgurstickers#installation)  
-*※ не знаю, кто использует светлую тему, но поддержка есть*
+*※ to enable Dark theme, enable Dark mode in BetterDiscord settings*
 
-## Установка
+## Installation
 
-* Установите ~~BetterDiscord~~ [Zere's fork](https://github.com/rauenzi/BetterDiscordApp/releases/).
-ЭТО ВАЖНО! Обычная версия глючит на каждом шагу и иногда банально не запускает стикер-меню. 
-* Установите плагин
-	* Откройте папку `C:\Users\<user>\AppData\Roaming\BetterDiscord\plugins` в проводнике или через кнопку **Open Plugin Folder** в разделе настроек плагинов BetterDiscord.
-  * Сохраните файл [`imguremotes.plugin.js`](https://raw.githubusercontent.com/badcoder1337/bd-imgurstickers/master/dist/imguremotes.plugin.js) в этой папке.
-*  Перезапустите Discord (*Ctrl + R или иначе*).
-* Включите плагин
-  * Откройте `Настройки`  - `Plugins` и убедитесь, что плагин определился и включен. 
-* Откройте меню плагинов и вы увидите вкладку **Imgur**.
+* Install [BetterDiscord](https://betterdiscord.net/)
+* Install the plugin
+	* Open the folder at `C:\Users\<user>\AppData\Roaming\BetterDiscord\plugins` by navigating there via File Explorer of your choice
+  * Drop the plugin [`lineemotes.plugin.js`](https://raw.githubusercontent.com/awaken1ng/bd-linestickers/master/dist/lineemotes.plugin.js) off there
+*  Restart Discord (*Ctrl + R or a method of your choice*)
+* Make sure the plugin is enabled
+  * Open `User Settings` - `BetterDiscord` - `Plugins`, you should see plugin in the list, enable it by checking the box
+* Open the Emote menu, you should see a **LINE** tab in there
 
-## Добавление стикеров
+## Removing or renaming stickers
+
+Move your cursor into the right part of the title, you'll see two icons there
+
+![](https://camo.githubusercontent.com/1cf0df3ea7383c2ab2798705d5f29b18eb841ab5/68747470733a2f2f63646e2e646973636f72646170702e636f6d2f6174746163686d656e74732f3330363032303830333534363434373837322f3334353934333731343336353137373835362f756e6b6e6f776e2e706e67)
+
+### Deleting
+
+Click on the cross icon and confirm deletion
+
+![](https://camo.githubusercontent.com/badffdb26d735d0d0807333d5dd3c8e4d60ffebd/68747470733a2f2f63646e2e646973636f72646170702e636f6d2f6174746163686d656e74732f3330363032303830333534363434373837322f3334353934343033343730393334303138312f756e6b6e6f776e2e706e67)
+
+### Renaming 
+
+Click on the pen icon, edit the name, then either press `Enter` or click away
+
+*※ In case of an emergency, you can edit the config at `%appdata%\BetterDiscord\plugins\lineemotes.config.json` manually, after making changes, please fully restart Discord by closing it and opening it again*
+
+## Adding stickers
+
+### Getting stickers
 
 You can find them on [LINE Store](https://store.line.me/home/en)
 
@@ -51,25 +69,6 @@ There are two ways of adding stickers:
 * Enter the title, amount of stickers in a pack and the ID of the first sticker and press `Add` button
 
   ![](https://camo.githubusercontent.com/756765fef0bc6a58ea242015d0bab7481c210e5a/68747470733a2f2f63646e2e646973636f72646170702e636f6d2f6174746163686d656e74732f3233313434323233333138343734373534302f3332333630323332323536313137313435382f756e6b6e6f776e2e706e67)
-
-
-## Removing or renaming stickers
-
-Move your cursor into the right part of the title, you'll see two icons there
-
-![](https://camo.githubusercontent.com/1cf0df3ea7383c2ab2798705d5f29b18eb841ab5/68747470733a2f2f63646e2e646973636f72646170702e636f6d2f6174746163686d656e74732f3330363032303830333534363434373837322f3334353934333731343336353137373835362f756e6b6e6f776e2e706e67)
-
-### Deleting
-
-Click on the cross icon and confirm deletion
-
-![](https://camo.githubusercontent.com/badffdb26d735d0d0807333d5dd3c8e4d60ffebd/68747470733a2f2f63646e2e646973636f72646170702e636f6d2f6174746163686d656e74732f3330363032303830333534363434373837322f3334353934343033343730393334303138312f756e6b6e6f776e2e706e67)
-
-### Renaming 
-
-Click on the pen icon, edit the name, then either press `Enter` or click away
-
-*※ In case of an emergency, you can edit the config at `%appdata%\BetterDiscord\plugins\lineemotes.config.json` manually, after making changes, please fully restart Discord by closing it and opening it again*
 
 ### Via Discord console
 
