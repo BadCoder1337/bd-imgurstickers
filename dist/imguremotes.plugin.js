@@ -1113,7 +1113,7 @@ imguremotes.preview.buildContainer = function() {
     var container = '';
     container += `
 <div class="preview-container">
-    <div class="preview-wrapper" style="visibility: hidden; opacity: 0; background-size: 100%;"></div>
+    <div class="preview-wrapper" style="visibility: hidden; opacity: 0; background-size: 90%;"></div>
 </div>`;
     return container;
 }
