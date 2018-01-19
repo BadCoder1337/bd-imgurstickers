@@ -8,8 +8,8 @@ _Лучший [сервер](https://discord.gg/r6rus) за последнюю �
 # BetterDiscord Imgur Stickers Plugin
 
 Расширяет меню эмодзи BetterDiscord, добавляя возможность встраивания стикеров из Imgur (одиночные изображения, галереи и альбомы).  
-[![](https://i.imgur.com/l7V3UVe.png)](https://github.com/badcoder1337/bd-imgurstickers#installation)
-[![](https://i.imgur.com/Q9zcxSi.png)](https://github.com/badcoder1337/bd-imgurstickers#installation)  
+[![](https://i.imgur.com/l7V3UVe.png)](https://github.com/badcoder1337/bd-imgurstickers#Установка)
+[![](https://i.imgur.com/Q9zcxSi.png)](https://github.com/badcoder1337/bd-imgurstickers#Установка)  
 *※ не знаю, кто использует светлую тему, но поддержка есть*
 
 ## Установка
