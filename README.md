@@ -1,4 +1,5 @@
 
+
 _Лучший [сервер](https://discord.gg/r6rus) за последнюю тысячу лет._  
 Пишите в Discord DM(FaZebook#3120)  или [репортите баг на GitHub](https://github.com/badcoder1337/bd-imgurstickers/issues)
 
@@ -25,120 +26,70 @@ _Лучший [сервер](https://discord.gg/r6rus) за последнюю �
 
 ## Добавление стикеров
 
-You can find them on [LINE Store](https://store.line.me/home/en)
+### Добавление стикеров из Telegram...
+ 
+1) Найдите нужные вам стикеры. Например, [здесь](https://tlgrm.ru/stickers).
+2) Добавьте их к себе.
+3) Начните диалог с ботом `@stickerset2packbot`, написав сначала `/start`, а потом `/newpack`.
+4) Перешлите ему все необходимые стикеры и завершите диалог командой `/finish png 250`.
+5) Скачайте и разархивируйте полученный архив. 
+6) Откройте папку `<ВашАрхив>\<IDТелеги>\img`.
+7) Загрузите картинки на [Imgur](https://imgur.com/upload).
+8) Скопируйте ссылку на пост. Например, `https://imgur.com/a/PjtQR`.
 
-*※ No, you don't need to buy them*
+### Добавление стикеров из ВКонтакте...
 
-To add a sticker pack you'll need:
-* it's title
-* the ID of a first sticker
-* total count of stickers in a pack
+1) Найдите нужные вам стикеры. Например, [здесь](http://vkclub.su/ru/stickers/).
+2) Скачайте их к себе.
+3) Загрузите картинки на [Imgur](https://imgur.com/upload).
+4) Скопируйте ссылку на пост. Например, `https://imgur.com/a/PjtQR`.
 
-There are two ways of adding stickers:
-* via tab in emote menu
-* via Discord console
+### ...в Дискорд
 
-### Via tab in the menu
+1) Нажмите на **+** во вкладке **Imgur** стикер-меню
 
-* Open the tab by pressing the plus sign at the bottom
+  ![](https://i.imgur.com/dYnjres.png)
 
-  ![](https://camo.githubusercontent.com/c1f110a58855ef1f197fae9f3fc5f17feee2ba79/68747470733a2f2f63646e2e646973636f72646170702e636f6d2f6174746163686d656e74732f3233313434323233333138343734373534302f3332333630313937353139373330323738352f756e6b6e6f776e2e706e67)
+2) Вставьте скопированную ранее ссылку в нижнее поле. Введите в верхнее поле название набора стикеров. Если оставить пустым, то имя набора будет синхронизировано с названием поста на **Imgur**
 
-* The following form should show up:
+  ![](https://i.imgur.com/WudYrqA.png)
 
-  ![](https://camo.githubusercontent.com/b679d291fabdb1fc8a6ce36917d68275f31a963c/68747470733a2f2f63646e2e646973636f72646170702e636f6d2f6174746163686d656e74732f3233313434323233333138343734373534302f3332333630323130313939313234333737382f756e6b6e6f776e2e706e67)
+3) Нажмите на другой **+**
 
-* Enter the title, amount of stickers in a pack and the ID of the first sticker and press `Add` button
-
-  ![](https://camo.githubusercontent.com/756765fef0bc6a58ea242015d0bab7481c210e5a/68747470733a2f2f63646e2e646973636f72646170702e636f6d2f6174746163686d656e74732f3233313434323233333138343734373534302f3332333630323332323536313137313435382f756e6b6e6f776e2e706e67)
-
-
-## Removing or renaming stickers
-
-Move your cursor into the right part of the title, you'll see two icons there
-
-![](https://camo.githubusercontent.com/1cf0df3ea7383c2ab2798705d5f29b18eb841ab5/68747470733a2f2f63646e2e646973636f72646170702e636f6d2f6174746163686d656e74732f3330363032303830333534363434373837322f3334353934333731343336353137373835362f756e6b6e6f776e2e706e67)
-
-### Deleting
-
-Click on the cross icon and confirm deletion
-
-![](https://camo.githubusercontent.com/badffdb26d735d0d0807333d5dd3c8e4d60ffebd/68747470733a2f2f63646e2e646973636f72646170702e636f6d2f6174746163686d656e74732f3330363032303830333534363434373837322f3334353934343033343730393334303138312f756e6b6e6f776e2e706e67)
-
-### Renaming 
-
-Click on the pen icon, edit the name, then either press `Enter` or click away
-
-*※ In case of an emergency, you can edit the config at `%appdata%\BetterDiscord\plugins\lineemotes.config.json` manually, after making changes, please fully restart Discord by closing it and opening it again*
-
-### Via Discord console
-
-* Open the developer tools by pressing `Ctrl + Shift + I`
-
-* In a console, execute the following command: ``lineemotes.appendPack(`title`, first_sticker_id, sticker count)``
-<br> *※ for example ``lineemotes.appendPack(`Miko sister of fox`, 1133826, 40)``*
+  ![](https://i.imgur.com/x09f9NV.png)
 
 
-### Getting sticker's title, ID and sticker count
+## Удаление или переименовывание
 
-#### Grease/Tampermonkey user script
-[![](https://camo.githubusercontent.com/90e0741670663dbc6e414478d793b5a50ffbb2cb/68747470733a2f2f63646e2e646973636f72646170702e636f6d2f6174746163686d656e74732f3233313434323233333138343734373534302f3331303138363631353934313336353736302f756e6b6e6f776e2e706e67)](https://greasyfork.org/en/scripts/23630)
+* Наведите мышку справа от заголовка
+* Нажмите на крестик для удаления и подтвердите.
+* Нажмите на карандаш для редактирования названия набора.
 
-If you're using [Greasemonkey](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/) or [Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo) you can [download a user script](https://greasyfork.org/en/scripts/23630) that will show you the title, first sticker ID, amount of stickers and append string on the page
+![](https://i.imgur.com/QSTw9MC.png)
 
-#### Javascript in the console
-Similar to user script above, you can run the following scary looking line of JavaScript in your browser's console. It will output the same thing script above would.
+*※ Если что-то пошло не так вы можете открыть файл настроек `%appdata%\BetterDiscord\plugins\imguremotes.config.json`  и вручную его отредактировать. После изменений перезапустите Discord закрыв и открыв его снова.*
 
-*※ You can access the console by opening Developer Tools from context menu by right clicking somewhere on the page or using the same Ctrl + Shift + I hotkey to open Developer Tools*
+## Изменение размеров меню
 
-```
-console.log('Title: ' + $('.mdCMN08Ttl').text() + '\nFirst sticker ID: ' + $('.mdCMN09Image').first().css('background-image').slice($('.mdCMN09Image').first().css('background-image').search('/products/') + 10).slice(0, $('.mdCMN09Image').first().css('background-image').slice($('.mdCMN09Image').first().css('background-image').search('/products/') + 10).search('/android/')).slice($('.mdCMN09Image').first().css('background-image').slice($('.mdCMN09Image').first().css('background-image').search('/products/') + 10).slice(0, $('.mdCMN09Image').first().css('background-image').slice($('.mdCMN09Image').first().css('background-image').search('/products/') + 10).search('/android/')).lastIndexOf('/') + 1) + '\nLength: ' + $('.mdCMN09Li').length.toString() + '\nAppend string:\n' + 'lineemotes.appendPack(`' + $('.mdCMN08Ttl').text() + '`, ' + $('.mdCMN09Image').first().css('background-image').slice($('.mdCMN09Image').first().css('background-image').search('/products/') + 10).slice(0, $('.mdCMN09Image').first().css('background-image').slice($('.mdCMN09Image').first().css('background-image').search('/products/') + 10).search('/android/')).slice($('.mdCMN09Image').first().css('background-image').slice($('.mdCMN09Image').first().css('background-image').search('/products/') + 10).slice(0, $('.mdCMN09Image').first().css('background-image').slice($('.mdCMN09Image').first().css('background-image').search('/products/') + 10).search('/android/')).lastIndexOf('/') + 1) + ', ' + $('.mdCMN09Li').length.toString() + ')')
-```
+Вы можете перемасштабировать меню стикеров следующими командами в консоли `Ctrl + Shift + I` (например, для мониторов с большим разрешением):
 
-#### Manual way
-##### Finding first sticker ID
-Sticker ID can be found in a sticker URL, the said URL can be extracted from a page by right clicking on a sticker and inspecting the element
+`imguremotes.menu.setWidth(<Ширина>)`
 
-![](https://camo.githubusercontent.com/78635b5611f1cb82378737c741dd3a3c255569e7/68747470733a2f2f63646e2e646973636f72646170702e636f6d2f6174746163686d656e74732f3233313434323233333138343734373534302f3331303139333031353831353739383738362f756e6b6e6f776e2e706e67)
+`imguremotes.menu.setHeight(<Высота>)`
 
-##### Finding sticker count
-Just count them =P
+`imguremotes.menu.setSize(<Ширина>, <Высота>)`
 
-Default sticker count is 40, which is the standard for most sticker packs, however, some packs, usually animated, can be an exception to this
+*※ например, меню шириной в 6 стикеров `imguremotes.menu.setSize(494, 326)`*
 
-## Resizing the window
+Для сброса к настройкам по умолчанию вы можете использовать команду
 
-You can resize the LINE tab using the following commands in console:
+`imguremotes.menu.setSize(0, 0)`
 
-`lineemotes.menu.setWidth(width)`
+## CSS патчи для совместимостью со стороними темами
 
-`lineemotes.menu.setHeight(height)`
+Скопируйте и вставьте код патча в раздел `Настройки` - `Custom CSS`
 
-`lineemotes.menu.setSize(width, height)`
+- Beard's Material Design ([тема](https://github.com/BeardDesign1/Material-design-theme), [патч](https://github.com/BadCoder1337/bd-imgurstickers/blob/master/css_patch/imguremotes.patch-beardsmaterialdesign.css))
+- Full Dark ([тема](https://github.com/fluffingtons/fulldark), [патч](https://github.com/BadCoder1337/bd-imgurstickers/blob/master/css_patch/imguremotes.patch-fulldark.css))
 
-*※ for example `lineemotes.menu.setSize(494, 326)`*
-
-## Adding unavailable stickers
-[![](https://camo.githubusercontent.com/6a6c9d4febc36ae58e9e0f7577aab1756a020f70/68747470733a2f2f696d616765732d312e646973636f72646170702e6e65742f2e654a774e7955734f7779414d414e47376341444d78355130743045456b61674a52746852466c5876586d6235357176756361705637534b64563444743445786a30797730556932364574577a704836777a6e5242456b6c3576306f54427563746f6e50653277556a786f426d556c6a4d793367625a2d453948397a74302d687075726571666e384642434c532e72394b32513273713566664d526b786a6f466175426d7a30663755)](https://store.line.me/stickershop/product/2999/ja)
-
-Some sticker packs might greet you with the message above
-
-One way to get sticker IDs is to download the pack using the API endpoint that LINE app is using, use the following template
-
-`https://dl.stickershop.line.naver.jp/products/0/0/1/<packid>/android/stickers.zip`
-
-For example `https://dl.stickershop.line.naver.jp/products/0/0/1/2999/android/stickers.zip` for the pack above
-
-*Note: you can find the pack ID in the page's URL*
-![](https://camo.githubusercontent.com/fe841f6288a0dd1c28c161494ed36d4a97f6acca/68747470733a2f2f63646e2e646973636f72646170702e636f6d2f6174746163686d656e74732f3233313434323233333138343734373534302f3331303139343039333631333531343737342f756e6b6e6f776e2e706e67)
-
-Using a file archiver of your choice, open the zip file, find the sticker with the lowest ID, that will be the first sticker ID
-
-*※ assuming sticker count is 40, if the zip file doesn't contain 83 files (40 stickers, 40 thumbnails, 2 category icons, 1 metadata file), set the sticker count accordingly*
-
-## CSS patches for theme compatibility
-
-Copy and paste the CSS patch into Custom CSS
-
-- Beard's Material Design ([theme](https://github.com/BeardDesign1/Material-design-theme), [patch](https://gist.github.com/awaken1ng/417d8faf8dc69f5df9c43ede3c841856))
-- Full Dark ([theme](https://github.com/fluffingtons/fulldark), [patch](https://gist.github.com/awaken1ng/3ff89021b3f913254e515ae0393790af))
+##### Спасибо [awaken1ng](https://github.com/awaken1ng/bd-linestickers) за оригинальный плагин для стикеров LINE 
