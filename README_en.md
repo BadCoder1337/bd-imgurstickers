@@ -17,7 +17,7 @@ Extends BetterDiscord emote menu to add a tab with Imgur stickers (single images
 IT IS IMPORTANT! Regular version buggy as f***. 
 * Install the plugin
 	* Open the folder at %AppData%\Roaming\BetterDiscord\plugins by navigating there via File Explorer of your choice
-  * Drop the plugin [`imguremotes.plugin.js`] (https://raw.githubusercontent.com/badcoder1337/bd-imgurstickers/master/dist/imguremotes.plugin.js) off there.
+  * Drop the plugin [`imguremotes.plugin.js`](https://raw.githubusercontent.com/badcoder1337/bd-imgurstickers/master/dist/imguremotes.plugin.js) off there.
 *  Restart Discord (Ctrl + R or a method of your choice).
 	* Make sure the plugin is enabled
   * Open `User Settings` - `BetterDiscord` - `Plugins`, you should see plugin in the list, enable it by checking the box
