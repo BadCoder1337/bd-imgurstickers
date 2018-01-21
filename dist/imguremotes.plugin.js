@@ -80,7 +80,6 @@ imguremotes.prototype.getLocalizationStrings = function () {
 	'addform-title': 'Title',
     'addform-title-placeholder': 'Default',
     'addform-pack': 'Imgur post',
-    //'addform-id': 'not used',
     'addform-add': 'Add',
     'delete-confirm': 'Are you sure you want to delete this pack?',
     'yes': 'Yes',
@@ -93,7 +92,6 @@ imguremotes.prototype.getLocalizationStrings = function () {
 	localization_strings['addform-title'] = 'Заголовок',
     localization_strings['addform-title-placeholder'] = 'По умолчанию',
     localization_strings['addform-pack'] = 'Пост Imgur',
-    //localization_strings['addform-id'] = 'не используется',
     localization_strings['addform-add'] = '<b>+</b>',
     localization_strings['delete-confirm'] = 'Вы действительно хотите удалить этот пак?',
     localization_strings['yes'] = 'Да',
@@ -103,7 +101,7 @@ imguremotes.prototype.getLocalizationStrings = function () {
   return localization_strings;
 }
 
-//logger function, outputs console message in '[imgur Stickers] <message>' format
+//logger function, outputs console message in '[Imgur Stickers] <message>' format
 imguremotes.log = (message) => console.log(`[${imguremotes.prototype.getName()}] ${message}`);
 imguremotes.getBDRepo = () => {
     var script_url = $("script[src*='BetterDiscordApp']").attr('src').split('/')
@@ -132,16 +130,15 @@ imguremotes.categories.buildContainer = function() {
         }
     }
     var localization_strings = imguremotes.prototype.getLocalizationStrings();
-    //var numbersOnly = "return event.charCode >= 48 && event.charCode <= 57";
     container += `
 <div class="add-form" style="opacity: 0; pointer-events: none;">
     <div class="labels">
-        <label for="imgur-add-title">${localization_strings['addform-title']}</label>
         <label for="imgur-add-pack">${localization_strings['addform-pack']}</label>
+        <label for="imgur-add-title">${localization_strings['addform-title']}</label>
     </div>
     <div class="inputs">
-        <input id="imgur-add-title" placeholder="${localization_strings['addform-title-placeholder']}">
         <input id="imgur-add-pack" placeholder="URL">
+        <input id="imgur-add-title" placeholder="${localization_strings['addform-title-placeholder']}">
     </div>
 
     <button type="button" class="imgur-add-button ui-button filled brand small">
@@ -189,7 +186,6 @@ imguremotes.categories.init = function () {
     });
 
     var state = {
-        'id': false,
         'length': true,
         'title': false
     };
@@ -212,7 +208,6 @@ imguremotes.categories.init = function () {
 
     $(`#imgur-add-title`).off();
     $(`#imgur-add-pack`).off();
-    $(`#imgur-add-id`).off();
 
     $(`#imgur-add-title`).keyup((event) => {
         if ($(event.target).val()) state['title'] = true;
@@ -222,11 +217,6 @@ imguremotes.categories.init = function () {
     $(`#imgur-add-pack`).keyup((event) => {
         if (Number($(event.target).val())) state['length'] = true;
         else state['length'] = false;
-        validate();
-    });
-    $(`#imgur-add-id`).keyup((event) => {
-        if (Number($(event.target).val().trim())) state['id'] = true;
-        else state['id'] = false;
         validate();
     });
 
@@ -298,12 +288,9 @@ imguremotes.categories.init = function () {
 							})
 					});
 			}
-			
-            //var id = $('#imgur-add-id').val().trim();
             
             $('#imgur-add-title').val('');
             $('#imgur-add-pack').val('');
-            //$('#imgur-add-id').val('');
         }
     });
 };
@@ -940,40 +927,6 @@ imguremotes.pack.appendPack = function (id, title, images) {
     var storage = imguremotes.storage;
     var pack = imguremotes.pack;
 
-    // parsing arguments
-    /* if (typeof title     === 'undefined') { throw 'ParsingError: Title is not defined'; }
-    if (typeof stickerid === 'undefined') { throw 'ParsingError: Sticker ID is not a defined'; } */
-    //if (typeof length    === 'undefined') { length = 1; log(`Length is not explicitly defined, defaulting to ${length}`); }
-
-    /* if (typeof title !== 'string') { throw 'ParsingError: Title is not a string'; }
-    if (Number.isInteger(stickerid) === false) {
-        if (typeof stickerid === 'string') {
-            stickerid = parseInt(stickerid, 10);
-            if (isNaN(stickerid)) {
-                throw 'ParsingError: First sticker ID is not a number';
-            } else {
-                log(`First sticker ID passed as a string, parsed as integer ${stickerid}`);
-            }
-        } else {
-            throw 'ParsingError: First sticker ID is not a number nor string';
-        }
-    }
-    if (Number.isInteger(length) === false) {
-        if (length === null) {
-            length = 40;
-            log(`Null length passed, defaulting to ${length}`);
-        } else if (typeof length === 'string') {
-            length = parseInt(length, 10);
-            if (isNaN(length)) {
-                throw 'ParsingError: Length is not a number';
-            } else {
-                log(`Length passed as a string, parsed as integer ${length}`);
-            }
-        } else {
-            throw 'ParsingError: Length is not a number nor string';
-        }
-    } */
-
     var stickerpack = pack.getPack(id, title, images);
     if (imguremotes.storage.getPack(id) === null) {
         storage.pushPack(stickerpack);
@@ -993,14 +946,10 @@ imguremotes.appendPack = function (id, title, images) {
 imguremotes.pack.wrapPack = function (stickerid) {
 	imguremotes.log('Wrapping');
     var pack = imguremotes.storage.getPack(stickerid);
-	//imguremotes.log(pack);
     if (pack === null) { return ''; }
     var stickers = '';
     for (var i = 0; i < pack.images.length; ++i) {
-        stickers += `<div class="emote-container"><img class="emote-icon" src="https://i.imgur.com/`;
-		stickers += pack.images[i];
-		stickers += `"></div>`;
-		//imguremotes.log(i);
+        stickers += `<div class="emote-container"><img class="emote-icon" src="https://i.imgur.com/${pack.images[i]}"></div>`;
 	}
     var container = `
 <div class="imgur-pack" data-id="${pack.id}">
@@ -1184,45 +1133,6 @@ imguremotes.storage.getPack = function(id) {
     }
     return null;
 };
-
-/*
-imguremotes.storage.getPackID = function(id) {
-    // look up the pack by one of its sticker IDs or its name
-    var log = imguremotes.log;
-    var mode;
-    
-    if (typeof id === 'number') {
-        if (Number.isInteger(id) === false) {
-            throw 'ParsingError: ID cannot be float';
-        } else {
-            mode = 'integer';
-        }
-    } 
-    if (typeof id === 'string') {
-        mode = 'string';
-    }
-    
-    var storage = this.get();
-    if (mode === 'integer') {
-        for (var index = 0; index < storage.length; index++) {
-            for (var sticker = 0; sticker < storage[index].stickers.length; sticker++) {
-                if (storage[index]['stickers'][sticker] === id) {
-                    return storage[index];
-                }
-            }
-        }
-    }
-    if (mode === 'string') {
-        for (var index = 0; index < storage.length; index++) {
-            if (storage[index]['title'] === id) {
-                return storage[index];
-            }
-        }
-    }
-    
-    return null;
-};
-*/
 
 imguremotes.storage.deletePack = function(id) {
     var storage = this.get();
