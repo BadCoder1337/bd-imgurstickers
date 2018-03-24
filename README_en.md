@@ -1,6 +1,6 @@
 
 
-Write to my Discord DM(FaZebook#3120) or [report a bug on GitHub](https://github.com/badcoder1337/bd-imgurstickers/issues)
+Write to my Discord DM(FaZebook#1488) or [report a bug on GitHub](https://github.com/badcoder1337/bd-imgurstickers/issues)
 
 [Russian Version](README.md)
 
