@@ -1,6 +1,6 @@
 
 
-_Лучший [сервер](https://discord.gg/r6rus) за последнюю тысячу лет._  
+_Лучший [сервер](https://discord.gg/5hW8UP5) за последнюю тысячу лет._  
 Пишите в Discord DM(FaZebook#3120)  или [репортите баг на GitHub](https://github.com/badcoder1337/bd-imgurstickers/issues)
 
 [English Version](README_en.md)
