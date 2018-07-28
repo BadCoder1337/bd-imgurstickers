@@ -300,8 +300,8 @@ imguremotes.menu = function () {}
 imguremotes.menu.init = function () {
     quickEmoteMenu.lsContainer = this.buildContainer();
     
-    // band aid fix for compatibility with Zerebos fork
-    if (imguremotes.getBDRepo() === 'rauenzi') {
+    // // band aid fix for compatibility with Zerebos fork
+    // if (imguremotes.getBDRepo() === 'rauenzi') {
         // overriding
         // adding imgur tab into the callback function
         QuickEmoteMenu.prototype.obsCallback = function(elem) {
@@ -374,7 +374,7 @@ imguremotes.menu.init = function () {
             fav.removeClass("active");
             emojis.removeClass("active");
             imgur.removeClass("active");
-            $(".emoji-picker, .emojiPicker-3g68GS").hide();
+            $(".emojiPicker-3m1S-j, .emojiPicker-3g68GS").hide();
             $("#bda-qem-favourite-container").hide();
             $("#bda-qem-twitch-container").hide();
             $("#bda-qem-imgur-container").hide();
@@ -389,8 +389,8 @@ imguremotes.menu.init = function () {
                 break;
             case "bda-qem-emojis":
                 emojis.addClass("active");
-                $(".emoji-picker, .emojiPicker-3g68GS").show();
-                    $(".emoji-picker .search-bar-inner input, .emojiPicker-3g68GS .search-bar-inner input").focus();
+                $(".emojiPicker-3m1S-j, .emojiPicker-3g68GS").show();
+                    $(".emojiPicker-3m1S-j .search-bar-inner input, .emojiPicker-3g68GS .search-bar-inner input").focus();
                 break
             case "bda-qem-imgur":
                 imgur.addClass("active");
@@ -402,7 +402,7 @@ imguremotes.menu.init = function () {
             emoteIcon.off();
             emoteIcon.on("click", function() {
                 // find out what tab we're dealing with
-                if ($(this).parent().parent().attr("class") === 'imgur-pack-stickers') {
+                if ($(this).parent().parent().hasClass('imgur-pack-stickers')) {
                     // if dealing with imgur stickers tab, grab src
                     var emote = $(this).attr("src") // + '\n';
                 } else {
@@ -420,127 +420,127 @@ imguremotes.menu.init = function () {
             imguremotes.confirm.init();
             imguremotes.menu.resize();
         };
-    } else {
-        // overriding
-        // adding imgur tab into the callback function
-        QuickEmoteMenu.prototype.obsCallback = function(e) {
-            // Emotes - Show Discord emoji menu
-            if (!settingsCookie["bda-es-9"])
-                e.addClass("bda-qme-hidden");
-             else
-                e.removeClass("bda-qme-hidden");
+    // } else {
+    //     // overriding
+    //     // adding imgur tab into the callback function
+    //     QuickEmoteMenu.prototype.obsCallback = function(e) {
+    //         // Emotes - Show Discord emoji menu
+    //         if (!settingsCookie["bda-es-9"])
+    //             e.addClass("bda-qme-hidden");
+    //          else
+    //             e.removeClass("bda-qme-hidden");
     
-            var self = this;
+    //         var self = this;
     
-            // rebuild container if the language was changed
-            var localization_strings = imguremotes.prototype.getLocalizationStrings();
-            if (this.locale === undefined) {
-                this.locale = document.children[0].getAttribute('lang');
-            } else if (this.locale !== document.children[0].getAttribute('lang')) {
-                imguremotes.log('Language changed, rebuilding container to reflect changes')
-                this.locale = document.children[0].getAttribute('lang');
-                this.lsContainer = imguremotes.menu.buildContainer();
-            }
+    //         // rebuild container if the language was changed
+    //         var localization_strings = imguremotes.prototype.getLocalizationStrings();
+    //         if (this.locale === undefined) {
+    //             this.locale = document.children[0].getAttribute('lang');
+    //         } else if (this.locale !== document.children[0].getAttribute('lang')) {
+    //             imguremotes.log('Language changed, rebuilding container to reflect changes')
+    //             this.locale = document.children[0].getAttribute('lang');
+    //             this.lsContainer = imguremotes.menu.buildContainer();
+    //         }
     
-            // avoid unnecessary whitespace
-            var qmeHeader = `<div id="bda-qem">`
-            qmeHeader += `<button class="active" id="bda-qem-twitch" onclick='quickEmoteMenu.switchHandler(this); return false;'>Twitch</button>`
-            qmeHeader += `<button id="bda-qem-favourite" onclick='quickEmoteMenu.switchHandler(this); return false;'>${localization_strings['bda-qem-favourite']}</button>`
-            qmeHeader += `<button id="bda-qem-emojis" onclick='quickEmoteMenu.switchHandler(this); return false;'>${localization_strings['bda-qem-emojis']}</button>`
-            qmeHeader += `<button id="bda-qem-imgur" onclick="quickEmoteMenu.switchHandler(this); return false;">${localization_strings['bda-qem-imgur']}</button>`
-            qmeHeader += `<div>`
-            e.prepend(qmeHeader);
+    //         // avoid unnecessary whitespace
+    //         var qmeHeader = `<div id="bda-qem">`
+    //         qmeHeader += `<button class="active" id="bda-qem-twitch" onclick='quickEmoteMenu.switchHandler(this); return false;'>Twitch</button>`
+    //         qmeHeader += `<button id="bda-qem-favourite" onclick='quickEmoteMenu.switchHandler(this); return false;'>${localization_strings['bda-qem-favourite']}</button>`
+    //         qmeHeader += `<button id="bda-qem-emojis" onclick='quickEmoteMenu.switchHandler(this); return false;'>${localization_strings['bda-qem-emojis']}</button>`
+    //         qmeHeader += `<button id="bda-qem-imgur" onclick="quickEmoteMenu.switchHandler(this); return false;">${localization_strings['bda-qem-imgur']}</button>`
+    //         qmeHeader += `<div>`
+    //         e.prepend(qmeHeader);
     
-            // Emotes - Show Twitch/Favourite
-            if (settingsCookie["bda-es-0"]) {
-                e.append(this.teContainer);
-                e.append(this.faContainer);
-                e.removeClass("bda-qme-te-hidden");
-            } else {
-                e.addClass("bda-qme-te-hidden");
-            }
+    //         // Emotes - Show Twitch/Favourite
+    //         if (settingsCookie["bda-es-0"]) {
+    //             e.append(this.teContainer);
+    //             e.append(this.faContainer);
+    //             e.removeClass("bda-qme-te-hidden");
+    //         } else {
+    //             e.addClass("bda-qme-te-hidden");
+    //         }
     
-            e.append(this.lsContainer);
+    //         e.append(this.lsContainer);
     
-            // if twitch/favourite tab and discord emoji tab disabled
-            if ((!settingsCookie["bda-es-0"]) && (!settingsCookie["bda-es-9"]))
-                this.lastTab = "bda-qem-imgur";
+    //         // if twitch/favourite tab and discord emoji tab disabled
+    //         if ((!settingsCookie["bda-es-0"]) && (!settingsCookie["bda-es-9"]))
+    //             this.lastTab = "bda-qem-imgur";
     
-            // if twitch/favourite tab is disabled and the last open tab was one of them
-            if (((this.lastTab == 'bda-qem-emojis') || (this.lastTab == 'bda-qem-favourite')) && (!settingsCookie["bda-es-0"]))
-                this.lastTab = "bda-qem-emojis";
+    //         // if twitch/favourite tab is disabled and the last open tab was one of them
+    //         if (((this.lastTab == 'bda-qem-emojis') || (this.lastTab == 'bda-qem-favourite')) && (!settingsCookie["bda-es-0"]))
+    //             this.lastTab = "bda-qem-emojis";
     
-            // if discord emoji tab is disabled and it was the last open tab
-            if ((this.latTab == 'bda-qem-emojis') && (!settingsCookie["bda-es-9"]))
-                this.lastTab = "bda-qem-favourite";
+    //         // if discord emoji tab is disabled and it was the last open tab
+    //         if ((this.latTab == 'bda-qem-emojis') && (!settingsCookie["bda-es-9"]))
+    //             this.lastTab = "bda-qem-favourite";
     
-            if (this.lastTab === undefined)
-                // if twitch tab is disabled, default to discord emoji tab
-                if (!settingsCookie["bda-es-0"])
-                    this.lastTab = 'bda-qem-emojis';
-                else
-                    this.lastTab = "bda-qem-favourite";
+    //         if (this.lastTab === undefined)
+    //             // if twitch tab is disabled, default to discord emoji tab
+    //             if (!settingsCookie["bda-es-0"])
+    //                 this.lastTab = 'bda-qem-emojis';
+    //             else
+    //                 this.lastTab = "bda-qem-favourite";
     
-            this.switchQem(this.lastTab);
-        };    
-        // initializing stuff,
-        // making the tab openable, copying sticker URL into text area on click, initializing on-hover preview
-        QuickEmoteMenu.prototype.switchQem = function(id) {
-            var twitch = $("#bda-qem-twitch");
-            var fav = $("#bda-qem-favourite");
-            var emojis = $("#bda-qem-emojis");
-            var imgur = $("#bda-qem-imgur");
-            twitch.removeClass("active");
-            fav.removeClass("active");
-            emojis.removeClass("active");
-            imgur.removeClass("active");
-            $(".emoji-picker").hide();
-            $("#bda-qem-favourite-container").hide();
-            $("#bda-qem-twitch-container").hide();
-            $("#bda-qem-imgur-container").hide();
-            switch (id) {
-            case "bda-qem-twitch":
-                twitch.addClass("active");
-                $("#bda-qem-twitch-container").show();
-                break;
-            case "bda-qem-favourite":
-                fav.addClass("active");
-                $("#bda-qem-favourite-container").show();
-                break;
-            case "bda-qem-emojis":
-                emojis.addClass("active");
-                $(".emoji-picker").show();
-                break
-            case "bda-qem-imgur":
-                imgur.addClass("active");
-                $("#bda-qem-imgur-container").show();
-            }
-            this.lastTab = id;
-            var emoteIcon = $(".emote-icon");
-            emoteIcon.off();
-            emoteIcon.on("click", function() {
-                // find out what tab we're dealing with
-                if ($(this).parent().parent().attr("class") === 'imgur-pack-stickers') {
-                    // if dealing with imgur stickers tab, grab src
-                    var emote = $(this).attr("src") // + '\n';
-                } else {
-                    // otherwise grab title attribute
-                    var emote = $(this).attr("title");
-                }
-                var ta = $(".chat form textarea");
-                var text = ta.val().slice(-1) == " " ? emote : " " + emote
-                ta.focus();
-                document.execCommand("insertText", false, text);
-                // force the textarea to resize if needed
-                ta[0].dispatchEvent(new Event('input', { bubbles: true }));
+    //         this.switchQem(this.lastTab);
+    //     };    
+    //     // initializing stuff,
+    //     // making the tab openable, copying sticker URL into text area on click, initializing on-hover preview
+    //     QuickEmoteMenu.prototype.switchQem = function(id) {
+    //         var twitch = $("#bda-qem-twitch");
+    //         var fav = $("#bda-qem-favourite");
+    //         var emojis = $("#bda-qem-emojis");
+    //         var imgur = $("#bda-qem-imgur");
+    //         twitch.removeClass("active");
+    //         fav.removeClass("active");
+    //         emojis.removeClass("active");
+    //         imgur.removeClass("active");
+    //         $(".emoji-picker").hide();
+    //         $("#bda-qem-favourite-container").hide();
+    //         $("#bda-qem-twitch-container").hide();
+    //         $("#bda-qem-imgur-container").hide();
+    //         switch (id) {
+    //         case "bda-qem-twitch":
+    //             twitch.addClass("active");
+    //             $("#bda-qem-twitch-container").show();
+    //             break;
+    //         case "bda-qem-favourite":
+    //             fav.addClass("active");
+    //             $("#bda-qem-favourite-container").show();
+    //             break;
+    //         case "bda-qem-emojis":
+    //             emojis.addClass("active");
+    //             $(".emoji-picker").show();
+    //             break
+    //         case "bda-qem-imgur":
+    //             imgur.addClass("active");
+    //             $("#bda-qem-imgur-container").show();
+    //         }
+    //         this.lastTab = id;
+    //         var emoteIcon = $(".emote-icon");
+    //         emoteIcon.off();
+    //         emoteIcon.on("click", function() {
+    //             // find out what tab we're dealing with
+    //             if ($(this).parent().parent().attr("class") === 'imgur-pack-stickers') {
+    //                 // if dealing with imgur stickers tab, grab src
+    //                 var emote = $(this).attr("src") // + '\n';
+    //             } else {
+    //                 // otherwise grab title attribute
+    //                 var emote = $(this).attr("title");
+    //             }
+    //             var ta = $(".chat form textarea");
+    //             var text = ta.val().slice(-1) == " " ? emote : " " + emote
+    //             ta.focus();
+    //             document.execCommand("insertText", false, text);
+    //             // force the textarea to resize if needed
+    //             ta[0].dispatchEvent(new Event('input', { bubbles: true }));
                 
-            });
-            imguremotes.preview.init();
-            imguremotes.categories.init();
-            imguremotes.confirm.init();
-            imguremotes.menu.resize();
-        };
-    }
+    //         });
+    //         imguremotes.preview.init();
+    //         imguremotes.categories.init();
+    //         imguremotes.confirm.init();
+    //         imguremotes.menu.resize();
+    //     };
+    // }
 
     
 };
@@ -578,7 +578,7 @@ imguremotes.menu.rebuild = function () {
 
 imguremotes.menu.unload = function () {
     // reverting the overriden functions
-    if (imguremotes.getBDRepo() === 'rauenzi') {  // band aid fix for compatibility with Zerebos fork
+    //if (imguremotes.getBDRepo() === 'rauenzi') {  // band aid fix for compatibility with Zerebos fork
         QuickEmoteMenu.prototype.obsCallback = function (elem) {
             var e = $(elem);
             if(!settingsCookie["bda-es-9"]) {
@@ -598,7 +598,7 @@ imguremotes.menu.unload = function () {
             } 
             this.switchQem(this.lastTab);
         };
-        QuickEmoteMenu.prototype.switchQem = function (id) {
+        QuickEmoteMenu.prototype.switchQem = function(id) {
             var twitch = $("#bda-qem-twitch");
             var fav = $("#bda-qem-favourite");
             var emojis = $("#bda-qem-emojis");
@@ -606,7 +606,7 @@ imguremotes.menu.unload = function () {
             fav.removeClass("active");
             emojis.removeClass("active");
         
-            $(".emoji-picker, .emojiPicker-3g68GS").hide();
+            $(".emojiPicker-3m1S-j, .emojiPicker-3g68GS").hide();
             $("#bda-qem-favourite-container").hide();
             $("#bda-qem-twitch-container").hide();
         
@@ -621,8 +621,8 @@ imguremotes.menu.unload = function () {
                 break;
                 case "bda-qem-emojis":
                     emojis.addClass("active");
-                    $(".emoji-picker, .emojiPicker-3g68GS").show();
-                    $(".emoji-picker .search-bar-inner input, .emojiPicker-3g68GS .search-bar-inner input").focus();
+                    $(".emojiPicker-3m1S-j, .emojiPicker-3g68GS").show();
+                    $(".emojiPicker-3m1S-j .search-bar-inner input, .emojiPicker-3g68GS .search-bar-inner input").focus();
                 break;
             }
             this.lastTab = id;
@@ -635,59 +635,59 @@ imguremotes.menu.unload = function () {
                 utils.insertText(ta[0], ta.val().slice(-1) == " " ? ta.val() + emote : ta.val() + " " + emote);
             });
         };
-    } else {
-        QuickEmoteMenu.prototype.obsCallback = function(e) {
-            if (!settingsCookie["bda-es-9"]) {
-                e.addClass("bda-qme-hidden");
-            } else {
-                e.removeClass("bda-qme-hidden");
-            }
-            if (!settingsCookie["bda-es-0"])
-                return;
-            var self = this;
-            e.prepend(this.qmeHeader);
-            e.append(this.teContainer);
-            e.append(this.faContainer);
-            if (this.lastTab == undefined) {
-                this.lastTab = "bda-qem-favourite";
-            }
-            this.switchQem(this.lastTab);
-        };
+    // } else {
+    //     QuickEmoteMenu.prototype.obsCallback = function(e) {
+    //         if (!settingsCookie["bda-es-9"]) {
+    //             e.addClass("bda-qme-hidden");
+    //         } else {
+    //             e.removeClass("bda-qme-hidden");
+    //         }
+    //         if (!settingsCookie["bda-es-0"])
+    //             return;
+    //         var self = this;
+    //         e.prepend(this.qmeHeader);
+    //         e.append(this.teContainer);
+    //         e.append(this.faContainer);
+    //         if (this.lastTab == undefined) {
+    //             this.lastTab = "bda-qem-favourite";
+    //         }
+    //         this.switchQem(this.lastTab);
+    //     };
 
-        QuickEmoteMenu.prototype.switchQem = function(id) {
-            var twitch = $("#bda-qem-twitch");
-            var fav = $("#bda-qem-favourite");
-            var emojis = $("#bda-qem-emojis");
-            twitch.removeClass("active");
-            fav.removeClass("active");
-            emojis.removeClass("active");
-            $(".emoji-picker").hide();
-            $("#bda-qem-favourite-container").hide();
-            $("#bda-qem-twitch-container").hide();
-            switch (id) {
-            case "bda-qem-twitch":
-                twitch.addClass("active");
-                $("#bda-qem-twitch-container").show();
-                break;
-            case "bda-qem-favourite":
-                fav.addClass("active");
-                $("#bda-qem-favourite-container").show();
-                break;
-            case "bda-qem-emojis":
-                emojis.addClass("active");
-                $(".emoji-picker").show();
-                break;
-            }
-            this.lastTab = id;
-            var emoteIcon = $(".emote-icon");
-            emoteIcon.off();
-            emoteIcon.on("click", function() {
-                var emote = $(this).attr("title");
-                var ta = $(".channel-text-area-default textarea");
-                ta.val(ta.val().slice(-1) == " " ? ta.val() + emote : ta.val() + " " + emote);
-            });
-        }
-    }
+    //     QuickEmoteMenu.prototype.switchQem = function(id) {
+    //         var twitch = $("#bda-qem-twitch");
+    //         var fav = $("#bda-qem-favourite");
+    //         var emojis = $("#bda-qem-emojis");
+    //         twitch.removeClass("active");
+    //         fav.removeClass("active");
+    //         emojis.removeClass("active");
+    //         $(".emoji-picker").hide();
+    //         $("#bda-qem-favourite-container").hide();
+    //         $("#bda-qem-twitch-container").hide();
+    //         switch (id) {
+    //         case "bda-qem-twitch":
+    //             twitch.addClass("active");
+    //             $("#bda-qem-twitch-container").show();
+    //             break;
+    //         case "bda-qem-favourite":
+    //             fav.addClass("active");
+    //             $("#bda-qem-favourite-container").show();
+    //             break;
+    //         case "bda-qem-emojis":
+    //             emojis.addClass("active");
+    //             $(".emoji-picker").show();
+    //             break;
+    //         }
+    //         this.lastTab = id;
+    //         var emoteIcon = $(".emote-icon");
+    //         emoteIcon.off();
+    //         emoteIcon.on("click", function() {
+    //             var emote = $(this).attr("title");
+    //             var ta = $(".channel-text-area-default textarea");
+    //             ta.val(ta.val().slice(-1) == " " ? ta.val() + emote : ta.val() + " " + emote);
+    //         });
+    //     }
+    // }
     
     
 
@@ -775,17 +775,17 @@ imguremotes.menu.appendPack = function(id) {
         .mouseleave(function(e) { imguremotes.preview.hide(); })
         .on("click", function() {
             // find out what tab we're dealing with
-            if ($(this).parent().parent().attr("class") === 'imgur-pack-stickers') {
+            if ($(this).parent().parent().hasClass('imgur-pack-stickers')) {
                 // if dealing with imgur stickers tab, grab src
                 var emote = $(this).attr("src");
             } else {
                 // otherwise grab title attribute
                 var emote = $(this).attr("title");
             }
-            var ta = $(".chat form textarea");
-            var text = ta.val().slice(-1) == " " ? emote : " " + emote
-            ta.focus();
-            document.execCommand("insertText", false, text);
+            var ta = utils.getTextArea();
+            utils.insertText(ta[0], ta.val().slice(-1) == " " ? ta.val() + emote : ta.val() + " " + emote)
+            // force the textarea to resize if needed
+            ta[0].dispatchEvent(new Event('input', { bubbles: true }));
         });
 
     // enable deletion
@@ -793,7 +793,7 @@ imguremotes.menu.appendPack = function(id) {
         var id = $(event.target.parentNode.parentNode.parentNode).attr('data-id');
         $('#bda-qem-imgur-container .confirm .yes').attr(
             'onclick',
-            `imguremotes.storage.deletePack(\'${id}\'); alert(); imguremotes.menu.removePack(\'${id}\'); imguremotes.confirm.hide();`);
+            `imguremotes.storage.deletePack(${id}); imguremotes.menu.removePack(${id}); imguremotes.confirm.hide();`);
         imguremotes.confirm.show();
     });
 
@@ -1470,4 +1470,4 @@ var stylesheet = `#bda-qem-imgur-container .icon-plus {
 ` 
 return "<style>" + stylesheet + "</style>"; 
 };
-imguremotes.prototype.getVersion = () => "2.2.8";
+imguremotes.prototype.getVersion = () => "2.2.9";
